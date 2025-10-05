@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { PrismaService } from './prisma/prisma.service'
-import { CreateUserController } from './controllers/user/create-user.controller'
-import { envSchema } from './env'
-import { AuthModule } from './auth/auth.module'
-import { AuthenticationUserController } from './controllers/user/authentication-user.controller'
+import { envSchema } from './config/env'
+
+import { LeadModule } from './modules/lead/lead.module'
+import { LandingPageModule } from './modules/landing-page/landing-page.module'
+import { AuthModule } from './modules/auth/auth.module'
+import { UserModule } from './modules/user/user.module'
+import { DatabaseModule } from './shared/database/database.module'
 
 @Module({
   imports: [
@@ -12,9 +14,11 @@ import { AuthenticationUserController } from './controllers/user/authentication-
       validate: (env) => envSchema.parse(env),
       isGlobal: true,
     }),
+    DatabaseModule,
     AuthModule,
+    UserModule,
+    LeadModule,
+    LandingPageModule,
   ],
-  controllers: [CreateUserController, AuthenticationUserController],
-  providers: [PrismaService],
 })
 export class AppModule {}

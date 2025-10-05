@@ -1,6 +1,7 @@
 @baseurl = http://localhost:3333
+@authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ODYzOWQ3ZS1lZWY5LTQ5ZTYtYmVkYS0zMWYxOWMxZTNlZDciLCJpYXQiOjE3NTk3MDA0Mjd9.Cs2TYuVRjoO3eNgMdHGZwovs9Gkg4cu31D_lzGQA67ULe4Md6ZvBv9m5RjXfvZAPQPTeJDeTQBJUNMzz5Bq_7LRkKVI0f9mwP9NJnljO3PUg72XkwObLkQa4914I66yV7qm9ML5KEYlKMUcMvRPzxpujMxwx2X8mH7ABlD1G6YYzV6FUGl15558z3m6EU-iXqxHkylQaBUiweBjP3CKJRfiqDJV3cOjtZOK593ygvHVvT0MAjh_IuDCCBWza9vnZGX1k64PTRJNK9zcZ3k0ezlCu3nS20MI_dDKSMoFCxh3FW4cVVP7gImeDTyRu7DVY2OYL_M2iEkyHqVcaXpaw4g
 
-### Create a user
+# @name create_account
 POST {{baseurl}}/users
 Content-Type: application/json
 
@@ -10,7 +11,9 @@ Content-Type: application/json
     "password": "123456"
 }
 
-### Authenticate a user
+###
+
+# @name authenticate
 POST {{baseurl}}/sessions
 Content-Type: application/json
 
@@ -18,3 +21,91 @@ Content-Type: application/json
   "email": "teste1a@teste.com",
   "password": "123456"
 }
+
+
+###
+
+# @name create_landing_page
+POST {{baseurl}}/landing-pages
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "Landing Page Teste",
+    "slug": "landing-page-teste-2"
+}
+
+###
+
+# @name list_landing_pages
+GET {{baseurl}}/landing-pages/46d555d7-64e6-49cd-8c0a-8f271e4b43d2
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+###
+
+# @name create_lead
+POST {{baseurl}}/leads
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "landingPageId": "46d555d7-64e6-49cd-8c0a-8f271e4b43d2",
+  "name": "XANAO",
+  "email": "xan@example.com",
+  "phone": "+5511999999999",
+  "position": "Desenvolvedor",
+  "dateOfBirth": "1990-05-15T00:00:00.000Z",
+  "message": "Gostaria de saber mais sobre o produto",
+  "utmSource": "google",
+  "utmMedium": "cpc",
+  "utmCampaign": "black-friday-2024",
+  "utmTerm": "curso-programacao",
+  "utmContent": "anuncio-a",
+  "gclid": "TeSter-123",
+  "fbclid": "IwAR123456"
+}
+
+###
+
+# @name list_leads
+GET {{baseurl}}/leads
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name list_leads_by_landing_page_id
+GET {{baseurl}}/leads?landingPageId=46d555d7-64e6-49cd-8c0a-8f271e4b43d2
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name list_lead_by_id
+GET {{baseurl}}/leads/9eadd4f3-bf80-495f-bc13-a1052824c2d4
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name update_lead
+PUT {{baseurl}}/leads/23105893-d5c1-4aab-9c9f-1d3d0d5712ff
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "João Silva Atualizado"
+}
+
+###
+
+# @name delete_lead
+DELETE {{baseurl}}/leads/1cd70012-7856-4ffd-bc72-2ae19fd6d7cd
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+
+
