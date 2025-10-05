@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String       @id @default(uuid())
+  name        String
+  email       String       @unique
+  password    String
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  leads        Lead[]
+  apiKeys      ApiKey[]
+  landingPages LandingPage[]
+
+  @@map("users")
+}
+
+model LandingPage {
+  id        String   @id @default(uuid())
+  userId    String @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  slug      String   @unique
+  url       String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  leads   Lead[]
+  apiKeys ApiKey[]
+
+  @@index([userId])
+  @@map("landing_pages")
+}
+
+model Lead {
+  id            String        @id @default(uuid())
+  userId        String        @map("user_id")
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  landingPageId String?       @map("landing_page_id")
+  landingPage   LandingPage?  @relation(fields: [landingPageId], references: [id], onDelete: SetNull)
+
+  name         String
+  email        String
+  phone        String?
+  position     String?
+  dateOfBirth  DateTime?      @map("date_of_birth")
+  message      String?
+
+  utmSource    String?        @map("utm_source")
+  utmMedium    String?        @map("utm_medium")
+  utmCampaign  String?        @map("utm_campaign")
+  utmTerm      String?        @map("utm_term")
+  utmContent   String?        @map("utm_content")
+  gclid        String?
+  fbclid       String?
+
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+
+  @@unique([landingPageId, email])
+
+  @@index([userId])
+  @@index([landingPageId])
+  @@index([email])
+  @@index([name])
+  @@index([createdAt])
+
+  @@map("leads")
+}
+
+model ApiKey {
+  id            String       @id @default(uuid())
+  userId        String       @map("user_id")
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  landingPageId String?      @map("landing_page_id")
+  landingPage   LandingPage? @relation(fields: [landingPageId], references: [id], onDelete: SetNull)
+
+  keyHash    String    @unique @map("key_hash")
+  prefix     String
+  scopes     String[]  @default([])
+
+  createdAt  DateTime  @default(now()) @map("created_at")
+  lastUsedAt DateTime? @map("last_used_at")
+  expiresAt  DateTime? @map("expires_at")
+  revokedAt  DateTime? @map("revoked_at")
+
+  @@index([userId])
+  @@index([landingPageId])
+  @@map("api_keys")
+}
