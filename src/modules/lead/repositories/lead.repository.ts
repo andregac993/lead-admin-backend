@@ -19,6 +19,8 @@ export type LeadListItem = {
   createdAt: Date
 }
 
+export type LeadForExport = Omit<Lead, 'userId' | 'id'>
+
 @Injectable()
 export class LeadRepository {
   constructor(private prisma: PrismaService) {}
@@ -72,6 +74,7 @@ export class LeadRepository {
           name: true,
           email: true,
           position: true,
+          utmSource: true,
           createdAt: true,
         },
         orderBy: { createdAt: 'desc' },
@@ -103,5 +106,14 @@ export class LeadRepository {
       where: { id: landingPageId, userId },
       select: { id: true },
     })
+  }
+
+  async findAllByLandingPage(landingPageId: string): Promise<LeadForExport[]> {
+    const leads = await this.prisma.lead.findMany({
+      where: { landingPageId },
+      orderBy: { createdAt: 'desc' },
+    })
+
+    return leads.map(({ ...rest }) => rest)
   }
 }

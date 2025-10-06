@@ -1,5 +1,5 @@
 @baseurl = http://localhost:3333
-@authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZDNjZWQ4MC1hMjM1LTQ3YzQtYWEyMi1kYzc2OWJjOWI2YzkiLCJpYXQiOjE3NTk3MTI1MDd9.k91eSyTJheax6SsM0lsDn-bQmdU1SfBvXgWVXGXRPDeGBmP1c006ZQ9SkRCxwb89vBLl9O4cJMCCuvvhmMIl3EJRQce7uFHczMdfwL1mq0CYhs3yy1IRpMab5nczpHcUlw1-GNFnm3AHFsSdC-uuH73_Gz0DLJ-nxppbV-s0IqmscH1OollRos7AOuQCplWna4rCh5flqMmuqJAnjqXbQZAQcWgINvIZaao3YQtDW7-gRJ1ZB6RntLCwHItF4-Klij_wTS74-caxuwkwHEy7JsQ2O94ZI9amTplKcirbMc6eSnieCM4Of4HSTtx2xMuB-goCQsmS93Jb-IG1nPV9Ag
+@authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ODYzOWQ3ZS1lZWY5LTQ5ZTYtYmVkYS0zMWYxOWMxZTNlZDciLCJpYXQiOjE3NTk3NTcwMjd9.VvhZIaj8JTPbCrqobvEtBarFHdjeA0WQrFkhpKLBttvoToqGmmSm-oLGuO1odPXGQeNuF7xaNwBy4kaegOZvzfeeUeSlxMRD8xzJJBvn9nRoUmLBdxApRg2zJS1-sGvkTMdj_YTjfE69FAdwXLJGXH_MbCAxI3atxRqxfZST711oLTIyKtSUYXa5_8EiYo3L45cNQ8l-kQcmz39qjiraTX1HJyFdzTMpbZWEtiptHv_PtpJgqLJQ--99_UP1Ur87yqVilTjrEqjVLcEQrV1eFb6zbrv2EQmiNpyYxNO1M63qaYDvCdg5leO5dNZsMMX_Jvs9hNyvKaqD74B_KQN48g
 @apiKey = lak_a53fabc52891fb2061c3961eaed6e10937660221bbe634fac421eb0a2395a88b
 
 ### ========================================
@@ -27,7 +27,7 @@ POST {{baseurl}}/sessions
 Content-Type: application/json
 
 {
-  "email": "andrea@example.com",
+  "email": "teste1a@teste.com",
   "password": "123456"
 }
 
@@ -132,28 +132,26 @@ Authorization: Bearer {{authToken}}
 ###
 
 # @name list_leads_by_landing_page_id
-GET {{baseurl}}/leads?landingPageId=9d449c6a-fabc-483c-8034-8d281d8d92ff
+GET {{baseurl}}/leads?landingPageId=46d555d7-64e6-49cd-8c0a-8f271e4b43d2
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 ###
 
 # @name list_lead_by_id
-GET {{baseurl}}/leads/9eadd4f3-bf80-495f-bc13-a1052824c2d4
+GET {{baseurl}}/leads/e0f9c862-538f-4b42-95ea-42795e02a4c7
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 ###
 
 # @name update_lead
-PUT {{baseurl}}/leads/23105893-d5c1-4aab-9c9f-1d3d0d5712ff
+PUT {{baseurl}}/leads/e0f9c862-538f-4b42-95ea-42795e02a4c7
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-  "name": "João Silva Atualizado",
-  "email": "joao.atualizado@example.com",
-  "phone": "+5511988888888"
+  "dateOfBirth": "1990-05-15T00:00:00.000Z"
 }
 
 ###
@@ -161,6 +159,12 @@ Authorization: Bearer {{authToken}}
 # @name delete_lead
 DELETE {{baseurl}}/leads/23105893-d5c1-4aab-9c9f-1d3d0d5712ff
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name export_leads_csv
+GET {{baseurl}}/leads/export/46d555d7-64e6-49cd-8c0a-8f271e4b43d2
 Authorization: Bearer {{authToken}}
 
 ###
