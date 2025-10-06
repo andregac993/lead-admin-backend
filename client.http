@@ -1,4 +1,4 @@
-@baseurl = http://localhost:3333
+@baseurl = https://lead-admin-backend.vercel.app
 @authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ODYzOWQ3ZS1lZWY5LTQ5ZTYtYmVkYS0zMWYxOWMxZTNlZDciLCJpYXQiOjE3NTk3NTcwMjd9.VvhZIaj8JTPbCrqobvEtBarFHdjeA0WQrFkhpKLBttvoToqGmmSm-oLGuO1odPXGQeNuF7xaNwBy4kaegOZvzfeeUeSlxMRD8xzJJBvn9nRoUmLBdxApRg2zJS1-sGvkTMdj_YTjfE69FAdwXLJGXH_MbCAxI3atxRqxfZST711oLTIyKtSUYXa5_8EiYo3L45cNQ8l-kQcmz39qjiraTX1HJyFdzTMpbZWEtiptHv_PtpJgqLJQ--99_UP1Ur87yqVilTjrEqjVLcEQrV1eFb6zbrv2EQmiNpyYxNO1M63qaYDvCdg5leO5dNZsMMX_Jvs9hNyvKaqD74B_KQN48g
 @apiKey = lak_a53fabc52891fb2061c3961eaed6e10937660221bbe634fac421eb0a2395a88b
 
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "name": "André Carvalho",
-  "email": "andrea@example.com",
+  "email": "andre@example.com",
   "password": "123456"
 }
 
