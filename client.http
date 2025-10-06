@@ -1,5 +1,6 @@
 @baseurl = http://localhost:3333
 @authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ODYzOWQ3ZS1lZWY5LTQ5ZTYtYmVkYS0zMWYxOWMxZTNlZDciLCJpYXQiOjE3NTk3MDA0Mjd9.Cs2TYuVRjoO3eNgMdHGZwovs9Gkg4cu31D_lzGQA67ULe4Md6ZvBv9m5RjXfvZAPQPTeJDeTQBJUNMzz5Bq_7LRkKVI0f9mwP9NJnljO3PUg72XkwObLkQa4914I66yV7qm9ML5KEYlKMUcMvRPzxpujMxwx2X8mH7ABlD1G6YYzV6FUGl15558z3m6EU-iXqxHkylQaBUiweBjP3CKJRfiqDJV3cOjtZOK593ygvHVvT0MAjh_IuDCCBWza9vnZGX1k64PTRJNK9zcZ3k0ezlCu3nS20MI_dDKSMoFCxh3FW4cVVP7gImeDTyRu7DVY2OYL_M2iEkyHqVcaXpaw4g
+@apiKey = lak_c76b121817b7a317064e760139c68ff9693e96cf5ad5f7da96e1dd317a2379d3
 
 # @name create_account
 POST {{baseurl}}/users
@@ -101,11 +102,40 @@ Authorization: Bearer {{authToken}}
 
 ###
 
-# @name delete_lead
-DELETE {{baseurl}}/leads/1cd70012-7856-4ffd-bc72-2ae19fd6d7cd
+
+# @name generate_api_key
+POST {{baseurl}}/users/api-key/generate
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
+###
+
+# @name get_api_key
+GET {{baseurl}}/users/api-key
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name revoke_api_key
+DELETE {{baseurl}}/users/api-key
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
 
 
+# @name create_lead_with_api_key
+POST {{baseurl}}/leads
+Content-Type: application/json
+Authorization: Bearer {{apiKey}}
 
+{
+  "landingPageId": "46d555d7-64e6-49cd-8c0a-8f271e4b43d2",
+  "name": "Lead via API Key",
+  "email": "lead-apiaaa@example.com",
+  "phone": "+5511988888888",
+  "message": "Lead criado via API Key",
+  "utmSource": "landing-page",
+  "utmMedium": "organic"
+}
