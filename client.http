@@ -1,5 +1,5 @@
 @baseurl = https://lead-admin-backend.vercel.app
-@authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ODYzOWQ3ZS1lZWY5LTQ5ZTYtYmVkYS0zMWYxOWMxZTNlZDciLCJpYXQiOjE3NTk3NTcwMjd9.VvhZIaj8JTPbCrqobvEtBarFHdjeA0WQrFkhpKLBttvoToqGmmSm-oLGuO1odPXGQeNuF7xaNwBy4kaegOZvzfeeUeSlxMRD8xzJJBvn9nRoUmLBdxApRg2zJS1-sGvkTMdj_YTjfE69FAdwXLJGXH_MbCAxI3atxRqxfZST711oLTIyKtSUYXa5_8EiYo3L45cNQ8l-kQcmz39qjiraTX1HJyFdzTMpbZWEtiptHv_PtpJgqLJQ--99_UP1Ur87yqVilTjrEqjVLcEQrV1eFb6zbrv2EQmiNpyYxNO1M63qaYDvCdg5leO5dNZsMMX_Jvs9hNyvKaqD74B_KQN48g
+@authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiOGIyNjYxNi02YzQyLTQyNzMtOGZmZS0yMWQ1YTFmOWQ2ZGIiLCJpYXQiOjE3NTk3NzM5MzB9.M1zVJIZToDoBJePsr_vpULisdgBokudOjXi4SdE5DEJOWacmY-A9sqbHpAb5gTOQMk3P_Cj4yyvA5s_SFGF15KlirrC2dsVvGwJVuCUwMk9Ah3NrlrY8WOB-ahT86lfg6Kdezr4mNGIPeFhS9ystEdar_nKvotnU__HHUBql6PHs9ziYiZWtpNyv9mfqQdStwoi3pJf6rzsbbAyW4noCIW_4Deerq-J57o2q_aomo8ZQUaRlPozcTTHHQ2BB4-KlzemLtI3eGyt361yQxl0zqZTNTtQJOVeuAtJO4OqkGhYDHwsO8aLUzn8GdhoqFjkynF_mo1-fqE5zr6EDlyvu5g
 @apiKey = lak_a53fabc52891fb2061c3961eaed6e10937660221bbe634fac421eb0a2395a88b
 
 ### ========================================
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "name": "André Carvalho",
-  "email": "andre@example.com",
+  "email": "andregac993@gmail.com",
   "password": "123456"
 }
 
@@ -27,7 +27,7 @@ POST {{baseurl}}/sessions
 Content-Type: application/json
 
 {
-  "email": "teste1a@teste.com",
+  "email": "andregac993@gmail.com",
   "password": "123456"
 }
 
@@ -68,8 +68,8 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-  "name": "Landing Page Teste",
-  "slug": "landing-page-teste",
+  "name": "Lading Page L0gik",
+  "slug": "landing-page-l0gik",
   "url": "https://example.com/landing-page-teste"
 }
 
