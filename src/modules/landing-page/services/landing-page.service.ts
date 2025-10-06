@@ -8,10 +8,15 @@ export class LandingPageService {
   constructor(private landingPageRepository: LandingPageRepository) {}
 
   async create(userId: string, dto: CreateLandingPageDto) {
-    const existingSlug = await this.landingPageRepository.findBySlug(dto.slug)
+    const existingSlug = await this.landingPageRepository.findByUserIdAndSlug(
+      userId,
+      dto.slug,
+    )
 
     if (existingSlug) {
-      throw new ConflictException('Slug já está em uso')
+      throw new ConflictException(
+        'Você já possui uma landing page com esse slug',
+      )
     }
 
     const landingPage = await this.landingPageRepository.create({

@@ -27,13 +27,14 @@ model LandingPage {
   userId    String @map("user_id")
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   name      String
-  slug      String   @unique
+  slug      String
   url       String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   leads   Lead[]
 
+  @@unique([userId, slug])
   @@index([userId])
   @@map("landing_pages")
 }

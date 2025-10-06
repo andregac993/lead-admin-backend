@@ -27,8 +27,10 @@ export class UserService {
   async generateApiKey(userId: string): Promise<string> {
     const apiKey = `lak_${randomBytes(32).toString('hex')}`
 
+    const hashedApiKey = await hash(apiKey, 8)
+
     await this.userRepository.update(userId, {
-      apiKey,
+      apiKey: hashedApiKey,
     })
 
     return apiKey
@@ -36,7 +38,12 @@ export class UserService {
 
   async getApiKey(userId: string): Promise<string | null> {
     const user = await this.userRepository.findById(userId)
-    return user?.apiKey ?? null
+
+    if (user?.apiKey) {
+      return 'API Key ativa (não é possível recuperar o valor original)'
+    }
+
+    return null
   }
 
   async revokeApiKey(userId: string): Promise<void> {

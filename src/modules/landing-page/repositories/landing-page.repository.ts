@@ -10,9 +10,17 @@ export class LandingPageRepository {
     return this.prisma.landingPage.create({ data })
   }
 
-  async findBySlug(slug: string): Promise<LandingPage | null> {
+  async findByUserIdAndSlug(
+    userId: string,
+    slug: string,
+  ): Promise<LandingPage | null> {
     return this.prisma.landingPage.findUnique({
-      where: { slug },
+      where: {
+        userId_slug: {
+          userId,
+          slug,
+        },
+      },
     })
   }
 
