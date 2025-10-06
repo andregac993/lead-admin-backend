@@ -16,7 +16,6 @@ model User {
   createdAt   DateTime     @default(now()) @map("created_at")
 
   leads        Lead[]
-  apiKeys      ApiKey[]
   landingPages LandingPage[]
 
   @@map("users")
@@ -33,7 +32,6 @@ model LandingPage {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   leads   Lead[]
-  apiKeys ApiKey[]
 
   @@index([userId])
   @@map("landing_pages")
@@ -73,25 +71,4 @@ model Lead {
   @@index([createdAt])
 
   @@map("leads")
-}
-
-model ApiKey {
-  id            String       @id @default(uuid())
-  userId        String       @map("user_id")
-  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  landingPageId String?      @map("landing_page_id")
-  landingPage   LandingPage? @relation(fields: [landingPageId], references: [id], onDelete: SetNull)
-
-  keyHash    String    @unique @map("key_hash")
-  prefix     String
-  scopes     String[]  @default([])
-
-  createdAt  DateTime  @default(now()) @map("created_at")
-  lastUsedAt DateTime? @map("last_used_at")
-  expiresAt  DateTime? @map("expires_at")
-  revokedAt  DateTime? @map("revoked_at")
-
-  @@index([userId])
-  @@index([landingPageId])
-  @@map("api_keys")
 }

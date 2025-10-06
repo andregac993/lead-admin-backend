@@ -9,9 +9,9 @@ import {
 import { LeadService } from '../services/lead.service'
 import { LeadIdParamDto, leadIdParamSchema } from '../dto/list-leads.dto'
 
-import { JwtAuthGuard } from '../../auth/jwt-auth.guard'
-import { CurrentUser } from '../../auth/current-user-decorator'
-import { UserPayload } from '../../auth/jwt.strategy'
+import { JwtAuthGuard } from '../../../shared/auth/guards/jwt-auth.guard'
+import { CurrentUser } from '../../../shared/auth/decorators/current-user-decorator'
+import { UserPayload } from '../../../shared/auth/strategies/jwt.strategy'
 import { ZodValidationPipe } from '../../../shared/pipes/zod-validation.pipe'
 
 @Controller('leads')

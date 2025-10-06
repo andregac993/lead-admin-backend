@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config'
 
 import { z } from 'zod'
 import { Injectable } from '@nestjs/common'
-import { Env } from '../../config/env'
+import { Env } from '../../../config/env'
 
 const tokenPayloadSchema = z.object({
   sub: z.uuid(),
